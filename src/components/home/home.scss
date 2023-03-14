@@ -1,0 +1,80 @@
+
+
+.home {
+
+.imageBackground {
+ 
+ position: relative;
+ margin: 0;
+ padding: 0;
+ height: 100%;
+ background-repeat:no-repeat;
+         
+ }
+ 
+  .entry_field {
+    position: absolute;
+margin-top: -730px;
+      display: flex;
+      
+
+    // .MuiFormLabel-root {
+    //   color: #c7c2c2 !important;
+    //   font-size: 14px;
+    // }
+
+    // .MuiInputBase-input  {
+    //   //  border:0,5px solid #6d6b6b !important;
+    //   padding: 10px !important;
+    //   //  border-radius:20px !important;
+    //    color:#c7c2c2 !important;
+
+    // }
+
+    // .MuiOutlinedInput-root {
+    //   border:0.5px solid #6d6b6b !important;
+    //   border-radius:7px !important;
+    //   margin: 3px;
+    // }
+
+    Button {
+      height: 40px;
+      margin-top: 6px;
+      color: #c7c2c2;
+    }
+    #outlined-basic-label {
+      color: rgb(247, 241, 241) !important;
+      margin: -3px 5px;
+    }
+
+    #outlined-basic {
+      border: 1px solid rgb(103, 113, 243);
+      border-radius: 10px;
+      height: 10px;
+    }
+
+    #demo-simple-select {
+      border: 1px solid rgb(103, 113, 243);
+      border-radius: 10px;
+      height: 10px;
+      color: rgb(247, 241, 241) !important;
+      margin: -3px 5px;
+    }
+  }
+
+  // img {
+  //    background-image: url("../../fon/fon-s.jpg")!important;
+  //   position: absolute;
+
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   margin: auto;
+  //   min-width: 50%;
+  //   background-size: cover;
+  //   //  background-position: center center;
+  //   background-repeat: no-repeat;
+  //   height: 100%;
+  // }
+}
