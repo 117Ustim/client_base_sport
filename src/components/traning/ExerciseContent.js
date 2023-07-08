@@ -3,7 +3,7 @@ import Exercise from "./Exercise";
 const ExerciseContent = (props) => {
   return (
     <>
-      {props.week?.map((w) => {
+      {props.weeks?.map((w) => {
         return (
           <div className="traning-container">
             <div className="traning">

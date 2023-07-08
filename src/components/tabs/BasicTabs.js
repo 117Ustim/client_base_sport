@@ -59,7 +59,6 @@ export default function BasicTabs(props) {
           aria-label="basic tabs example"
         >
           {props.tabs?.map((tab) => {
-            console.log(props);
             return (
               <Tab
                 key={tab.label}
@@ -73,7 +72,7 @@ export default function BasicTabs(props) {
       {props.tabs?.map((tab, index) => {
         return (
           <CustomTabPanel key={tab.label + index} value={value} index={index}>
-            {tab.content}
+            {React.cloneElement(props.children, tab)}
           </CustomTabPanel>
         );
       })}

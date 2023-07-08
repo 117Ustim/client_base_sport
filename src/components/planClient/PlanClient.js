@@ -1,13 +1,11 @@
 import "./planClient.scss";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import BasicTabs from "../tabs/BasicTabs";
 import BasicList from "../list/BasicList";
 import BasicModal from "../modal/BasicModal";
-import Exercise from "../traning/Exercise";
 import ExerciseContent from "../traning/ExerciseContent";
 
 export default function PlanClient() {
@@ -16,84 +14,49 @@ export default function PlanClient() {
   const [tabs, setTabs] = useState([
     {
       label: "1",
-      content: (
-        <ExerciseContent
-          week={[
-            {
-              day: "Пн",
-              date: "11.07.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-            {
-              day: "Ср",
-              date: "13.07.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-          ]}
-        />
-      ),
+      weeks: [
+        {
+          day: "Пн",
+          date: "11.07.2023",
+          exercises: [
+            { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+          ],
+        },
+        {
+          day: "Ср",
+          date: "13.07.2023",
+          exercises: [
+            { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+          ],
+        },
+      ],
     },
     {
       label: "2",
-      content: (
-        <ExerciseContent
-          week={[
-            {
-              day: "Пн",
-              date: "18.07.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-            {
-              day: "Ср",
-              date: "20.07.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-          ]}
-        />
-      ),
-    },
-    {
-      label: "3",
-      content: (
-        <ExerciseContent
-          week={[
-            {
-              day: "Пн",
-              date: "01.08.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-            {
-              day: "Ср",
-              date: "03.08.2023",
-              exercises: [
-                { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-                { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
-              ],
-            },
-          ]}
-        />
-      ),
+      weeks: [
+        {
+          day: "Пн",
+          date: "12.07.2023",
+          exercises: [
+            { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+          ],
+        },
+        {
+          day: "Ср",
+          date: "14.07.2023",
+          exercises: [
+            { name: "Жим", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим1", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+            { name: "Жим2", times: ["2х6 (70)", "2х4 (90)", "1х4 (110)"] },
+          ],
+        },
+      ],
     },
   ]);
   const [weeks, setWeeks] = useState([]);
@@ -150,7 +113,9 @@ export default function PlanClient() {
           <BasicList items={weeks} />
         </div>
         <div className="tranings-content">
-          <BasicTabs tabs={tabs} />
+          <BasicTabs tabs={tabs}>
+            <ExerciseContent />
+          </BasicTabs>
         </div>
       </div>
     </div>
