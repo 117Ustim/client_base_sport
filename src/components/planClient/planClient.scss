@@ -1,0 +1,21 @@
+.planClient {
+  display: flex;
+  position: relative;
+
+
+// -------------------------BUTTON--------------
+  .back_Client_list {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  .button_base {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  .button_addExercises {
+    position: absolute;
+    right: 150px;
+  }
+}

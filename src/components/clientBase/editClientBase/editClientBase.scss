@@ -1,0 +1,49 @@
+.AddCategory {
+  display: flex;
+  margin: 50px 50px;
+ 
+  
+  .input_sex{
+    width: 120px !important;
+      }
+
+  .buttonAddCategory {
+     margin: 10px 10px;
+      width: 150px !important;
+     
+      
+  }
+}
+.edit_exercises {
+  display: flex;
+  margin: 0 60px;
+ 
+  ul {
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0;
+  }
+  .home1 {
+    
+    width: 250px;
+    line-height: 6px;
+    min-width: 200px;
+    h5 {
+      cursor: pointer;
+    }
+  }
+  .delete {
+    margin: 0px 15px;
+    height: 15px;
+
+    span {
+      font-size: 8px;
+     
+    }
+  }
+ 
+}
+.back_button {
+  margin: 3px 3px ;
+  font-size: 12px !important;
+ } 

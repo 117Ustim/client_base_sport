@@ -1,32 +1,65 @@
 import "./listAddClients.scss";
+import axios from "axios";
 import { useNavigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-
+//  import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 export default function ListAddClients() {
- 
-  
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const contactArray = useSelector((state) => state.contactArray);
 
-  const onBackHome = () => {
+  const [params, setParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const [serverContacts, setServerContacts] = useState([]);
+  const [page, setPage] = useState(
+    params.get("page") ? Number(params.get("page")) : 1
+  );
+  const [pageQty, setPageQty] = useState(0);
+  const [limit, setLimit] = useState(params.get("limit") ?? 10);
+
+  const onButtonBackHome = () => {
     navigate("/");
   };
 
-  const onDeleteContactClient = (id) => {
-    dispatch({ type: "CONTACTS_DELETE", payload: id });
+  const onButtonExercises = () => {
+    navigate(`/edit_client_base/${params.id}`);
   };
 
+  const onButtonPlanClient = (id, surname, name) => {
+    navigate(`/plan_client/${id}/${surname} ${name}`);
+  };
+
+  const onDeleteContactClient = (id) => {
+    // console.log(id)
+    axios.delete(`http://localhost:9000/clients/${id}`).then(() => {
+      setServerContacts(serverContacts.filter((client) => client.id !== id));
+    });
+  };
 
   const onEditContactClient = (id) => {
-    //  dispatch({ type: "CONTACTS_EDIT", payload: id });
-    
     navigate(`/client_data/${id}`);
   };
 
+  useEffect(() => {
+    const gym = params.get("gym");
+    const searchParams = { page: page - 1, limit };
+    if (gym) {
+      searchParams.gym = gym;
+    }
+    const sex = params.get("sex");
+    if (sex) {
+      searchParams.sex = sex;
+    }
+    axios
+      .get("http://localhost:9000/clients", { params: { ...searchParams } })
+      .then((response) => {
+        setServerContacts(response.data.data);
+        setPageQty(Math.ceil(response.data.total / limit));
+      });
+  }, [params, page, limit]);
 
   return (
     <div className='clientList'>
@@ -34,15 +67,15 @@ export default function ListAddClients() {
         className='button_backHome'
         variant='contained'
         size='small'
-        onClick={onBackHome}
+        onClick={onButtonBackHome}
       >
         Home
       </Button>
 
       <div className='features'>
-        {contactArray.map((contact, index) => (
+        {serverContacts.map((contact, index) => (
           <div
-            key={index}
+            key={contact.id}
             className='feature'
           >
             <div className='feature-content'>
@@ -51,23 +84,27 @@ export default function ListAddClients() {
               </div>
 
               <div className='surname'>
-                <strong>{contact.surname}</strong>
-                <span>{contact.name}</span>
+                <strong>{contact.data.surname}</strong>
+                <span>{contact.data.name}</span>
               </div>
 
               <div className='gym'>
-                <span>* {contact.gym} *</span>
+                <span>* {contact.data.gym} *</span>
               </div>
-
+              <Button
+                className='buttonPlan'
+                variant='contained'
+                onClick={() =>
+                  onButtonPlanClient(
+                    contact.id,
+                    contact.data.surname,
+                    contact.data.name
+                  )
+                }
+              >
+                План
+              </Button>
               <div className='button_block'>
-                <Button
-                  className='buttonDel'
-                  variant='contained'
-                  onClick={() => onEditContactClient(contact.id)}
-                >
-                  Редакт
-                </Button>
-
                 <Button
                   className='buttonDel'
                   variant='contained'
@@ -75,13 +112,43 @@ export default function ListAddClients() {
                 >
                   Удалить
                 </Button>
+                <Button
+                  className='buttonDel'
+                  variant='contained'
+                  onClick={() => onEditContactClient(contact.id)}
+                >
+                  Редакт
+                </Button>
               </div>
             </div>
           </div>
         ))}
       </div>
+      <Stack spacing={2}>
+        {!!pageQty && (
+          <Pagination
+            count={pageQty}
+            page={page}
+            onChange={(_, num) => {
+              setPage(num);
+              // обновление page в адресной строке
+              params.set("page", num);
+              setParams([...params.entries()]);
+            }}
+            variant='outlined'
+            shape='rounded'
+          />
+        )}
+      </Stack>
+
+      <Button
+        className='button_addExercises'
+        variant='contained'
+        size='small'
+        onClick={onButtonExercises}
+      >
+        Добавить упражнения
+      </Button>
     </div>
   );
 }
-
-
