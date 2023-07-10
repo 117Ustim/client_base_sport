@@ -1,21 +1,37 @@
 .planClient {
   display: flex;
+  flex-direction: column;
   position: relative;
-
 
 // -------------------------BUTTON--------------
   .back_Client_list {
-    position: absolute;
-    top: 5px;
-    left: 5px;
+    padding-bottom: 50px;
   }
+  .base-trainings-page {
+    display: flex;
+    gap: 50px;
+  }
+  .tranings-content {
+    width: 70%;
+  }
+  .traning {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .traning-date {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      .traning-day {
+        font-weight: 700;
+      }
+    }
+  }
+
   .button_base {
-    position: absolute;
-    top: 5px;
-    right: 10px;
   }
   .button_addExercises {
-    position: absolute;
-    right: 150px;
   }
 }
