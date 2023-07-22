@@ -1,5 +1,23 @@
-body {
-  background-color: #567895;
+.list-add-clients {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.block-top-button{
+display: flex;
+gap: 430px;
+}
+.button_backHome {
+ 
+
+}
+.button_addExercises {
+
+}
+
+.clientList{
+  margin-left: 50px;
+}
   .buttonDel {
     width: 10px;
     height: 10px;
@@ -10,14 +28,13 @@ body {
     float: right;
   }
 
-  .clientList {
-    margin: 120px 50px;
+
     .feature {
       display: flex;
       margin: 2px 0;
       position: relative;
     }
-
+ 
     .feature-content {
       display: flex;
       gap: 3px;
@@ -89,22 +106,9 @@ body {
         border-radius: 3px;
       }
     }
-  }
 
-  .button_backHome {
-    height: 22px;
-    font-size: 8px;
-    position: absolute;
-    top: 10px;
-    left: 5px;
-  }
-  .button_addExercises {
-    height: 22px;
-    font-size: 8px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+
   
-}
+  
+
 

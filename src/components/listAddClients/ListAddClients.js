@@ -1,4 +1,4 @@
-import "./listAddClients.scss";
+// import "./listAddClients.scss";
 import axios from "axios";
 import { useNavigate } from "react-router";
 //  import { useSelector, useDispatch } from "react-redux";
@@ -62,17 +62,44 @@ export default function ListAddClients() {
   }, [params, page, limit]);
 
   return (
-    <div className='clientList'>
-      <Button
+<div className="list-add-clients">
+
+<div className="block-top-button">
+<div className="button_backHome">
+<fieldset className='btngroup'>
+<input
+            className='btn _sub-small'
+            type='submit'
+            value='Назад'
+            onClick={onButtonBackHome}></input>
+        </fieldset>
+  </div>
+  <div className="button_addExercises">
+    <fieldset className='btngroup'>
+<input
+            className='btn _sub-small'
+            type='submit'
+            value='Додати вправу'
+            onClick={onButtonExercises}></input>
+        </fieldset>
+  </div>
+
+</div>
+  
+<div className='clientList'> 
+          
+      {/* <Button
         className='button_backHome'
         variant='contained'
         size='small'
         onClick={onButtonBackHome}
       >
         Home
-      </Button>
-
-      <div className='features'>
+      </Button> */}
+ {/* <fieldset > */}
+ 
+<div className='features'>
+  <div className="fieldset">
         {serverContacts.map((contact, index) => (
           <div
             key={contact.id}
@@ -124,6 +151,12 @@ export default function ListAddClients() {
           </div>
         ))}
       </div>
+
+ </div>
+
+  
+ {/* </fieldset> */}
+      
       <Stack spacing={2}>
         {!!pageQty && (
           <Pagination
@@ -140,15 +173,13 @@ export default function ListAddClients() {
           />
         )}
       </Stack>
-
-      <Button
-        className='button_addExercises'
-        variant='contained'
-        size='small'
-        onClick={onButtonExercises}
-      >
-        Добавить упражнения
-      </Button>
+    
+     
     </div>
+
+</div>
+
+
+   
   );
 }

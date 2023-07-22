@@ -20,12 +20,13 @@ export default function AddTraining() {
   const params = useParams();
 
   const [value, setValue] = useState(null);
+
   const [day, setDay] = useState("");
   const [exercises, setExercises] = useState([]);
   const [categories, setCategories] = useState([]);
   // console.log(categories);
   const [planExercises, setPlanExercises] = useState({});
-  // console.log(planExercises,'hhh')
+  //  console.log(planExercises,'hhh')
 
   // запись упражнения подходов и раз
   const [arrayPlanExercises, setArrayPlanExercises] = useState([]);
@@ -44,7 +45,7 @@ export default function AddTraining() {
   useEffect(() => {
     axios
       .get(`http://localhost:9000/clients-base/${params.id}`)
-      .then((response) => {console.log(response.data)
+      .then((response) => {console.log(response.data,'data')
         setExercises(response.data);
       });
     axios.get("http://localhost:9000/categories").then((response) => {
@@ -52,10 +53,7 @@ export default function AddTraining() {
       setCategories(response.data);
     });
 
-    // axios.get("http://localhost:9000/exercises").then((response) => {
-    //   setExercises(response.data);
-    //   // console.log(response.data, "data");
-    // });
+   
   }, []);
 
   const handleChange = (newValue) => {
@@ -71,11 +69,11 @@ export default function AddTraining() {
 
   const onChange = (event) => {
     
-    console.log(event.target)
-    console.log(planExercises)
+    // console.log(event.target)
+    // console.log(planExercises)
     // добавить подходы и разы в planExercises
     // обновить planExercises в arrayPlanExercises
-    console.log(arrayPlanExercises)
+    // console.log(arrayPlanExercises)
   };
 
   return (
@@ -99,8 +97,9 @@ export default function AddTraining() {
                   label='Дата'
                   inputFormat='DD/MM/YYYY'
                   value={value}
-                  onChange={handleChange}
-                  renderInput={(params) => <TextField {...params} />}
+                   onChange={handleChange}
+                  renderInput={(params) => <TextField {...params}
+                   />}
                 />
               </Stack>
             </FormControl>

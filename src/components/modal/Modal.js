@@ -46,7 +46,7 @@ export default function BasicModal(props) {
         variant='contained'
         size='small'
         onClick={handleOpen}>
-        Добавить тренировку
+        Добавить новый план
       </Button>
       <Modal
         open={open}
