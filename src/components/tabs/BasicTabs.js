@@ -50,7 +50,7 @@ export default function BasicTabs(props) {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <IconButton aria-label="add">
+        <IconButton aria-label="add" onClick={props.onAddClick}>
           <AddIcon />
         </IconButton>
         <Tabs
@@ -60,11 +60,7 @@ export default function BasicTabs(props) {
         >
           {props.tabs?.map((tab) => {
             return (
-              <Tab
-                key={tab.label}
-                label={tab.label}
-                {...a11yProps(tab.index)}
-              />
+              <Tab key={tab.name} label={tab.name} {...a11yProps(tab.id)} />
             );
           })}
         </Tabs>

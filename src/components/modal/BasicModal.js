@@ -26,8 +26,8 @@ export default function BasicModal(props) {
     setText({ ...text, [name]: value });
   };
 
-  const onAddClick = () => {
-    props.onAdd(text);
+  const onAddClick = async () => {
+    await props.onAdd(text);
     setText({ name: "", description: "" });
   };
 

@@ -1,15 +1,17 @@
 import "./planClient.scss";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router";
-import { useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BasicTabs from "../tabs/BasicTabs";
 import BasicList from "../list/BasicList";
 import BasicModal from "../modal/BasicModal";
-import ExerciseContent from "../traning/ExerciseContent";
+import axios from "axios";
+
+const trainigUrl = "http://localhost:9000/client-trainings";
 
 export default function PlanClient() {
   const navigate = useNavigate();
+  const location = useLocation();
   const params = useParams();
   const [tabs, setTabs] = useState([
     {
@@ -62,6 +64,12 @@ export default function PlanClient() {
   const [weeks, setWeeks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    axios.get(`${trainigUrl}/${params.id}`).then((resp) => {
+      setWeeks(resp.data);
+    });
+  }, [params.id]);
+
   const onButtonBack = () => {
     navigate(-1);
   };
@@ -69,11 +77,15 @@ export default function PlanClient() {
     navigate(`/client_base/${params.id}`);
   };
 
-  const onButtonAddTraining = (text) => {
-    setWeeks([
-      ...weeks,
-      { primaryText: text.name, secondaryText: text.description },
-    ]);
+  const onButtonAddTraining = async (text) => {
+    const { data } = await axios.post(
+      "http://localhost:9000/client-trainings",
+      {
+        ...text,
+        clientId: params.id,
+      },
+    );
+    setWeeks([...weeks, data]);
     setIsModalOpen(false);
   };
 
@@ -110,12 +122,17 @@ export default function PlanClient() {
       </div>
       <div className="base-trainings-page">
         <div className="tranings-list">
-          <BasicList items={weeks} />
+          <BasicList
+            items={weeks}
+            onCLick={(trainingId) => {
+              navigate(
+                `/plan_client/${params.id}/${params.name}/${trainingId}`,
+              );
+            }}
+          />
         </div>
         <div className="tranings-content">
-          <BasicTabs tabs={tabs}>
-            <ExerciseContent />
-          </BasicTabs>
+          <Outlet />
         </div>
       </div>
     </div>
