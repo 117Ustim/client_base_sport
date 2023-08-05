@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -8,12 +9,52 @@ import './labTabs.scss';
 import Button from '@mui/material/Button';
 import TemporaryDrawer from './../drawer/TemporaryDrawer';
 import Data from './date/Date';
+import ListExercises from './../listExercises/ListExercises';
 
 export default function LabTabs() {
-
-
+  const [exercises, setExercises] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [planExercises, setPlanExercises] = useState({});
   const [arrayPlanExercises, setArrayPlanExercises] = useState([]);
-  console.log(arrayPlanExercises, 'hhh');
+  const [openDrawer, setOpenDrawer] = useState({ right: false });
+  const [value, setValue] = useState('1');
+  const [tab, setTab] = useState([]);
+
+  // ------------------------------------------------------------------------------------
+
+  useEffect(() => {
+    // axios
+    //   .get(`http://localhost:9000/clients-base/${params.id}`)
+    //   .then((response) => {console.log(response.data,'rrrr')
+    //     setExercises(response.data);
+    //   });
+    axios.get('http://localhost:9000/categories').then((response) => {
+      console.log(response.data);
+      setCategories(response.data);
+    });
+
+    axios.get('http://localhost:9000/exercises').then((response) => {
+      setExercises(response.data);
+      // console.log(response.data, 'data');
+    });
+  }, []);
+
+  //  ----------------------------------DRAWER-------------------------------------------------------
+
+  const toggleDrawer = (anchor, open) => (event) => {
+  
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      setOpenDrawer({ ...openDrawer, [anchor]: false });
+    }else {
+     setOpenDrawer({ ...openDrawer, [anchor]: open }); 
+    }
+
+    
+  };
+// ------------------------------------------------------------------------------
 
   const moveNameExercise = (e) => {
     const temp = {
@@ -21,28 +62,17 @@ export default function LabTabs() {
       planExercises: e.name,
       id: e.id + 1,
     };
-    // setPlanExercises(temp);
     setArrayPlanExercises([...arrayPlanExercises, temp]);
   };
-
-  
-  const [value, setValue] = useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [tab, setTab] = useState([]);
   const addTab = () => {
     setTab([...tab, { label: tab.length + 1, weeks: [] }]);
   };
 
-  
-
-  const [planExercises, setPlanExercises] = useState({});
-  console.log(planExercises, 'hhh2');
-
-  
   
   return (
     <div className='labtabs'>
@@ -53,8 +83,23 @@ export default function LabTabs() {
               +
             </Button>
 
+            <Button
+              variant='contained'
+              size='small'
+              onClick={(e) => toggleDrawer('right', true)(e)}>
+              + упражнения
+            </Button>
+
             <div className='drawer'>
-              <TemporaryDrawer moveNameExercise={moveNameExercise} />
+              <TemporaryDrawer
+                openDrawer={openDrawer}
+                toggleDrawer={toggleDrawer}>
+                <ListExercises
+                  categories={categories}
+                  exercises={exercises}
+                  moveNameExercise={moveNameExercise}
+                />
+              </TemporaryDrawer>
             </div>
           </div>
 

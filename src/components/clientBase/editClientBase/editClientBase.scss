@@ -1,49 +1,80 @@
-.AddCategory {
+.editClientBase_buttonBack {
+  margin: 10px 10px;
+  width: 100px;
+}
+
+.block-category {
   display: flex;
+  align-items: center;
+  gap: 30px;
   margin: 50px 50px;
- 
-  
-  .input_sex{
-    width: 120px !important;
-      }
-
-  .buttonAddCategory {
-     margin: 10px 10px;
-      width: 150px !important;
-     
-      
-  }
 }
-.edit_exercises {
+
+// .block_output-category-exercises {
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+
+// }
+
+
+.column_category {
   display: flex;
-  margin: 0 60px;
- 
-  ul {
-    list-style-type: none;
-    font-size: 14px;
-    padding: 0;
-  }
-  .home1 {
-    
-    width: 250px;
-    line-height: 6px;
-    min-width: 200px;
-    h5 {
-      cursor: pointer;
-    }
-  }
-  .delete {
-    margin: 0px 15px;
-    height: 15px;
+  gap: 5px;
+  padding:0 50px;
 
-    span {
-      font-size: 8px;
-     
-    }
-  }
+}
+.text_category {
+  display: flex;
+ padding-top: 5px;
+  flex-direction: column;
+ 
+  gap: 3px;
+  align-items: center;
+  background: $bgList;
+  width: 240px;
+  height: 30px;
+  border: 1px solid $border;
+  border-radius: $br;
+  font-size: 16px;
  
 }
-.back_button {
-  margin: 3px 3px ;
-  font-size: 12px !important;
- } 
+// -------------------------------------------Delete-------------------------------------------
+.text_exercises {
+padding-left: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: $bgList;
+  width: 240px;
+  height: 30px;
+  border: 1px solid $border;
+  border-radius: $br;
+  font-size: 12px;
+  color: #4a4f5f;
+  font-weight: 200;
+}
+
+.delete {
+  width: 30px !important;
+   margin: 0px 5px;
+  height: 8px !important;
+  box-shadow: 0px 0px 0px , 0px 0px 0px ;
+  border: 1px solid #fff;
+  span {
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: red;
+    height: 0px;
+  }
+}
+.block-text-exercises {
+ margin-top: 25px;
+}
+.block-exercises{
+  margin: 3px 0;
+}

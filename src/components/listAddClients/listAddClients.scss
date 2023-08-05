@@ -1,114 +1,99 @@
-.list-add-clients {
+$bgList: rgba(215, 215, 241, 0.4);
+$border: rgb(206, 204, 204);
+$br: 3px;
+
+.feature {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-.block-top-button{
-display: flex;
-gap: 430px;
-}
-.button_backHome {
- 
-
-}
-.button_addExercises {
-
+  margin: 3px 0;
 }
 
-.clientList{
-  margin-left: 50px;
-}
-  .buttonDel {
-    width: 10px;
-    height: 10px;
-    font-size: 8px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 8px;
-    float: right;
+.feature-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+
+  .index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $bgList;
+    width: 15px;
+    height: 30px;
+    border: 1px solid $border;
+    border-radius: $br;
+
+    span {
+      font-size: 12px;
+
+      color: #9599a5;
+    }
+  }
+  .surname {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background: $bgList;
+    width: 300px;
+    height: 30px;
+    border: 1px solid $border;
+    border-radius: $br;
+    font-size: 14px;
+    strong {
+      margin-left: 8px;
+      color: #4a4f5f;
+      font-weight: 200;
+    }
+    span {
+      color: #4a4f5f;
+    }
+  }
+  .gym {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $bgList;
+    width: 90px;
+    height: 30px;
+    border: 1px solid $border;
+    border-radius: $br;
+
+    span {
+      font-size: 12px;
+
+      color: #9599a5;
+    }
+  }
+  .button_block {
+    background: $bgList;
+    width: 170px;
+    height: 30px;
+    border: 1px solid $border;
+    border-radius: $br;
   }
 
-
-    .feature {
-      display: flex;
-      margin: 2px 0;
-      position: relative;
-    }
- 
-    .feature-content {
-      display: flex;
-      gap: 3px;
-
-      .index {
-        background: rgb(132, 132, 137);
-        width: 15px;
-        height: 30px;
-        border: 1px solid rgb(158, 156, 156);
-        border-radius: 3px;
-
-        span {
-          font-size: 12px;
-          //  margin: 3px 2px;
-          text-align: center;
-          vertical-align: bottom;
-          color: azure;
-        }
-      }
-      .surname {
-        background: rgb(132, 132, 137);
-        width: 300px;
-        height: 30px;
-        border: 1px solid rgb(158, 156, 156);
-        border-radius: 3px;
-
-        strong {
-          align-self: self-end;
-          font-size: 16px;
-          margin-left: 8px;
-          color: azure;
-        }
-        span {
-          margin-left: 12px;
-          align-self: self-end;
-          font-size: 12px;
-          opacity: 0.7;
-          color: azure;
-        }
-      }
-      .gym {
-        background: rgb(132, 132, 137);
-        width: 90px;
-        height: 30px;
-        border: 1px solid rgb(158, 156, 156);
-        border-radius: 3px;
-
-        span {
-          margin-left: 12px;
-          align-self: self-end;
-          font-size: 12px;
-          opacity: 0.7;
-          color: azure;
-        }
-      }
-      .button_block {
-        background: rgb(132, 132, 137);
-        width: 170px;
-        height: 30px;
-        border: 1px solid rgb(158, 156, 156);
-        border-radius: 3px;
-      }
-
-      .buttonPlan {
-        background: rgb(132, 132, 137);
-        width: 130px;
-        height: 30px;
-        border: 1px solid rgb(158, 156, 156);
-        border-radius: 3px;
-      }
+  .buttonPlan {
+    box-shadow:
+      0px 0px 0px,
+      0px 0px 0px;
+    font-size: 11px;
+    background: rgba(199, 199, 242, 0.4);
+    width: 130px;
+    height: 30px;
+    border: 1px solid $border;
+    border-radius: $br;
+    &:hover {
+      box-shadow:
+        -2px -2px 3px rgba(199, 199, 242, 0.4),
+        2px 2px 3px $color-shadow;
+      font-size: 12px;
     }
 
-
-  
-  
-
+    &:active {
+      box-shadow:
+        inset 1px 1px 2px $color-shadow,
+        inset -1px -1px 2px $color-white;
+    }
+  }
+}
 

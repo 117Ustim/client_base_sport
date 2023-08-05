@@ -1,4 +1,5 @@
 
+export const BASIC_URL = "http://localhost:9000";
 
 export const EMPTY_CLIENT = {
   name: "",

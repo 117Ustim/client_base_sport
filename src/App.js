@@ -6,17 +6,22 @@ import PlanClient from "./components/planClient/PlanClient";
 import ClientBase from "./components/clientBase/ClientBase";
 import EditClientBase from "./components/clientBase/editClientBase/EditClientBase";
 import AddTraining from "./components/addTraining/AddTraining";
-import Home2 from './components/home/Home2'
+
+import TrainingWeeks from './components/planClient/TrainingWeeks';
 
 
 
 export default function App() {
   return (
-    <div className='App'>
+    <div className='app'>
       <Routes>
         <Route
           path='/'
           element={<Home />}
+        />
+        <Route
+          path='/edit_client_base'
+          element={<EditClientBase />}
         />
         <Route
           path='/list_add_clients'
@@ -35,18 +40,14 @@ export default function App() {
           path='/client_base/:id'
           element={<ClientBase />}
         />
-        <Route
-          path='/edit_client_base/:id'
-          element={<EditClientBase />}
-        />
+        <Route path="/plan_client/:id/:name/" element={<PlanClient />}>
+          <Route path=":trainingId" element={<TrainingWeeks />} />
+        </Route>
        <Route
           path='/add_training/:id'
           element={<AddTraining/>}
         />
-         <Route
-          path='home2'
-          element={<Home2 />}
-        />
+      
       </Routes>
      
     </div>

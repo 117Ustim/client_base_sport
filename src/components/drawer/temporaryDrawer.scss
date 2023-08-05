@@ -1,6 +1,7 @@
 .data-list {
   display: flex;
   flex-direction: column;
+  
 }
 .exercise {
   h5 {
@@ -9,4 +10,9 @@
   cursor: pointer;
   }
  
+}
+
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+  background-color:#EBECF0!important;
 }
